@@ -1,0 +1,97 @@
+---
+layout: post
+title: "Server Usage Report in Power BI"
+subtitle: "Power Bi Design"
+date: 2021-05-31 23:45:13 -0400
+
+---
+
+
+
+<!-- wp:image {"id":85,"sizeSlug":"large","linkDestination":"none","className":"is-style-default"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-1024x578.png" alt="" class="wp-image-85"/><span class="caption text-muted">server usage report</span>
+<!-- /wp:image -->
+
+<!-- wp:heading {"textAlign":"left"} -->
+<h2 class="has-text-align-left">What is the report for?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>This report shows the server utilization of all the servers we use within our team, we have separate servers for DW, App servers for users and BOT servers for out automation projects. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Data</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>We use SSIS to run C# code to get server Live status, CPU and Memory, MDX query to get sync date time and query duration of the Mutli-dimensional cubes. This data is then stored in SQL.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Power BI setup</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Since this data should be frequently updated, I choose Direct query as the storage mode in the report. Once the tables are selected, I removed unwanted columns in Power query, renamed columns to make them more readable. <br>Relationship between the tables were created and saved, let's move to the design. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Design</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>I love to design my layouts before creating visuals in Power BI, this gives me a good picture of what I want to create. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":86,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-1-1024x575.png" alt="" class="wp-image-86"/><span class="caption text-muted">PowerPoint layout</figcaption>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>I have started creating basic layout using PowerPoint, it's easy to create these layouts in PowerPoint and set as backgrounds in Power BI rather than having to deal with multiple objects in Power BI.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>I have recently started using Figma and I already love the tool, check it out if you are looking for a free design tool. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Visuals</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":87,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-2-1024x461.png" alt="" class="wp-image-87"/><span class="caption text-muted">Matrix visuals</figcaption>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>As you can see in the above image, these are individual matrix visuals created to filter information for each CUBE. Then they are stacked one on the other to create this single visual look. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":92,"width":1034,"height":582,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/2021-05-31_12-39-12-2.gif" alt="" class="wp-image-92" width="1034" height="582"/><span class="caption text-muted">Not a bug but a feature :D</figcaption>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Stacked hidden category column gives us another feature, users can click individual matrix to refer the server IP easily. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":93,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-5-1024x338.png" alt="" class="wp-image-93"/><span class="caption text-muted">Report tooltip</figcaption>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>I have also included a report tooltip which shows the trend of average CPU and Memory over time for 24 hours. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":94,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-6-1024x577.png" alt="" class="wp-image-94"/><span class="caption text-muted">Small multiples and Resource overview matrix</figcaption>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>In another tab I have created a small server utilization overview table using matrix visual and a line chart for individual server IP using small multiples feature. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p> Throughout the whole report, red and green colors are consciously used to mark what is wrong and where the issue is. I'm learning while exploring and these blogs are notes for myself, hope you guys like this. </p>
+<!-- /wp:paragraph -->

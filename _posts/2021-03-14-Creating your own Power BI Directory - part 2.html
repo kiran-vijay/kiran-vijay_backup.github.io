@@ -1,0 +1,98 @@
+---
+layout: post
+title: "Creating your own Power BI Directory"
+subtitle: "part 2"
+date: 2021-03-14 23:45:13 -0400
+
+---
+
+
+
+
+<!-- wp:paragraph -->
+<p>In continuation of my previous blog, let's see how we can automate the Power BI REST API calls, store the data in OneDrive excel, and refresh the Power BI directory dataset. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Let's start by creating an excel file with two tables to store the data from Get Apps and Get Reports calls. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":54,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-15.png" alt="" class="wp-image-54"/><span class="caption text-muted">Get Apps data table</span>
+<!-- /wp:image -->
+
+<!-- wp:image {"id":55,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-16-1024x100.png" alt="" class="wp-image-55"/><span class="caption text-muted">Get Reports data table</span>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Now, the important part, calling Power BI REST API's from Power Automate</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>For this part you need to get an Access token to run the API calls, for this I referred to a good <a rel="noreferrer noopener" href="https://carldesouza.com/how-to-authenticate-and-use-the-power-bi-api-inside-power-automate/" target="_blank">blog </a>by Carl de Souza, refresh it to know how to register an application in Azure, using which we can get access token.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Once you are done with this step, create a Power Automate flow and add recurrence as the trigger, with this trigger you can run the flow daily to keep the report updated. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The next step is to all HTTP tasks, which will help us to run the API call to get access token.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":56,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-17-890x1024.png" alt="" class="wp-image-56"/><span class="caption text-muted">Access token using API call</span>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Use the Parse JSON step to format the JSON output and split Access token. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":57,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-18.png" alt="" class="wp-image-57"/><span class="caption text-muted">Split access token </span>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Next step is to use the access token to run the Power BI REST API calls. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":58,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-19.png" alt="" class="wp-image-58"/><span class="caption text-muted">Get Apps API call in Power Automate</span>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Parse the JSON output to extract all APP information </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":59,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-20.png" alt="" class="wp-image-59"/><span class="caption text-muted">Parse Get Apps output JSON</span>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>The next step is to insert the extracted data into the excel file we initially created. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":60,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-21.png" alt="" class="wp-image-60"/><span class="caption text-muted">Insert data into excel</span>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Repeat the above steps for "Get Reports" API. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Last step is to trigger Power BI directory dataset refresh</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":61,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-22.png" alt="" class="wp-image-61"/><span class="caption text-muted">Power BI dataset refresh</span>
+<!-- /wp:image -->
+
+<!-- wp:image {"id":62,"sizeSlug":"large","linkDestination":"none"} -->
+<img src="https://raw.githubusercontent.com/kiran-vijay/kiran-vijay.github.io/main/img/posts/image-23-887x1024.png" alt="" class="wp-image-62"/><span class="caption text-muted">Flow execution</span>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Done, we have now built an automated solution to pull all report information into a single report which can become one easy view of all the reports within your organization. </p>
+<!-- /wp:paragraph -->
